@@ -1,0 +1,59 @@
+Para construir un ejecutable se debe teclear:
+
+gnatmake count.adb
+
+La salida de este comando debe ser: 
+gcc-6 -c count.adb
+gnatbind-6 -x count.ali
+gnatlink-6 count.ali
+
+Con lo que se obtienen los archivos:
+count        archivo ejecutable
+count.adb    archivo fuente ada original
+count.ali    archivo ada library interface
+count.o      archivo objeto
+
+De estos, el ejecutable es (file count):
+count: ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked,
+ interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.32, 
+BuildID[sha1]=93f90782f5f25bccf4088bcc7ac43d704db3b35b, not stripped
+
+La salida del ejecutable count es (./count):
+The value of N is  20
+
+Si en el cuerpo de la tarea Count_Task se agrega delay(0.0) en el ciclo for: 
+-- ...
+   task body Count_Task is
+      Temp: Integer;
+   begin
+      for I in 1..10 loop
+         Temp := N;
+         delay(0.0);
+         N := Temp + 1;
+       end loop;
+   end Count_Task;
+-- ...
+
+y se recompila nuevamente el programa:
+
+gnatmake count.adb
+
+La salida de este comando debe ser: 
+gcc-6 -c count.adb
+gnatbind-6 -x count.ali
+gnatlink-6 count.ali
+
+Ahora, la ejecucion de ./count produjo:
+The value of N is  10
+
+Note que ahora la salida fue N es igual a 10 en lugar de 20. 
+(20 es el resultado que se deberia obtener si el programa concurrente 
+fuera correcto). Que la primera version del programa haya arrojado que 
+el valor de N fue 20 no significa que esa version del programa concurrente 
+sea correcta.
+
+Para limpiar una construccion se puede usar:
+
+gnatclean count
+
+ 
