@@ -1,6 +1,0 @@
-.hola
-HOLA MUNDO
-.Tercera linea
-CUARTA LINEA
-
-ULTIMA LINEA
