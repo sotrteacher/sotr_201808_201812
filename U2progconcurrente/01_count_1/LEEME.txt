@@ -1,0 +1,5 @@
+
+
+java -classpath baci.jar baci.gui.Debugger [file.cm]
+
+

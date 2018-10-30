@@ -1,0 +1,26 @@
+/* Copyright (C) 2006 M. Ben-Ari. See copyright.txt */
+int n = 0;
+semaphore mutex;
+void p() {
+  int temp, i;
+  for (i = 0; i < 5; i++) {
+    wait(mutex);
+    temp = n;
+    n = temp + 1;
+    signal(mutex);
+  }
+}
+void q() {
+  int temp, i;
+  for (i = 0; i < 5; i++) {
+    wait(mutex);
+    temp = n;
+    n = temp + 1;
+    signal(mutex);
+  }
+}
+void main() {
+  initialsem(mutex,1);
+  cobegin { p(); q(); }
+  cout << "The value of n is " << n << "\n";
+}

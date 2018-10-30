@@ -1,0 +1,29 @@
+BACI System: C-- to PCODE Compiler, 12:29  18 Jul 2004
+Source file: count.cm  Sat Oct 27 21:34:03 2018
+ line  pc
+   1    0  /* Copyright (C) 2006 M. Ben-Ari. See copyright.txt */
+   2    0  int n = 0;
+   3    0  semaphore mutex;
+   4    0  void p() {
+   5    0    int temp, i;
+   6    0    for (i = 0; i < 5; i++) {
+   7   14      wait(mutex);
+   8   16      temp = n;
+   9   19      n = temp + 1;
+  10   24      signal(mutex);
+  11   26    }
+  12   27  }
+  13   28  void q() {
+  14   28    int temp, i;
+  15   28    for (i = 0; i < 5; i++) {
+  16   42      wait(mutex);
+  17   44      temp = n;
+  18   47      n = temp + 1;
+  19   52      signal(mutex);
+  20   54    }
+  21   55  }
+  22   56  void main() {
+  23   57    initialsem(mutex,1);
+  24   60    cobegin { p(); q(); }
+  25   68    cout << "The value of n is " << n << "\n";
+  26   72  }

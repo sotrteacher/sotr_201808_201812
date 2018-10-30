@@ -1,0 +1,23 @@
+BACI System: C-- to PCODE Compiler, 12:29  18 Jul 2004
+Source file: count.cm  Tue Oct 30 13:42:14 2018
+ line  pc
+   1    0  /* Copyright (C) 2006 M. Ben-Ari. See copyright.txt */
+   2    0  int n = 0;
+   3    0  void p() {
+   4    0    int temp, i;
+   5    0    for (i = 0; i < 3; i++) {
+   6   14      temp = n;
+   7   17      n = temp + 1;
+   8   22    }
+   9   23  }
+  10   24  void q() {
+  11   24    int temp, i;
+  12   24    for (i = 0; i < 3; i++) {
+  13   38      temp = n;
+  14   41      n = temp + 1;
+  15   46    }
+  16   47  }
+  17   48  void main() {
+  18   49    cobegin { p(); q(); }
+  19   57    cout << "The value of n is " << n << "\n";
+  20   61  }
