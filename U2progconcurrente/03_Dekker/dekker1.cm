@@ -1,0 +1,63 @@
+/* Copyright (C) 2006 M. Ben-Ari. See copyright.txt */
+
+int wantp = 0;
+int wantq = 0;
+int turn = 1;
+int N=0;
+
+/*{N=N_{0}}p{N=N_{0}+10}*/
+void p()
+{
+    int i=0;
+    while (i<10) 
+    {
+      cout << "process p non-critical section\n";
+      i++;
+      wantp = 1;
+      while (wantq){
+        if (turn == 2)
+          {
+          wantp = 0;
+          while (!(turn == 1));
+          wantp = 1;
+          }
+      }         
+      cout << "process p critical section\n";
+      N=N+1;
+      turn = 2;
+      wantp = 0;
+    }
+}
+
+/*{N=N_{0}}q{N=N_{0}+10}*/
+void q()
+{
+    int i=0;
+    while (i<10) 
+    {
+      cout << "process q non-critical section\n";
+      i++;
+      wantq = 1;
+      while (wantp){
+        if (turn == 1)
+          {
+          wantq = 0;
+          while (!(turn == 2));
+          wantq = 1;
+        }
+      }  
+      cout << "process q critical section\n";
+      N=N+1;
+      turn = 1;
+      wantq = 0;
+    }
+}
+
+main() {
+  /*{N=N_{0}}cobegin{N=N_{0}+20}*/
+  cobegin {
+    p();
+    q();
+  }
+}
+
