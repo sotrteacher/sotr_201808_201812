@@ -1,0 +1,61 @@
+/*
+ * Algoritmo de Peterson
+ */
+int FALSE=0;
+int TRUE=1;
+const int N=2;	/* Numero de procesos */
+int G=0;	/* Recurso compartido */
+
+int turn;		/* ¿A quien le toca?*/
+int interested[N];	/* Todos los valores son inicialmente 0 (FALSE) */
+
+void enter_region(int process)	/* process 0 o 1 */
+{
+  int other;		/* Numero del otro proceso */
+  other=1-process;	/* Lo opuesto de process */
+  interested[process]=TRUE;	/* mostrar interes */
+  turn=process;		/*establecer bandera*/
+  while((turn==process)&&(interested[other]==TRUE))/* instruccion nula */;
+}
+
+void leave_region(int process)	/* process: quien sale */
+{
+  interested[process]=FALSE;
+}
+
+/* process 0 */
+void p()
+{
+  int i=0;
+  while(i<10){
+    i++;
+    cout<<"p seccion no critica"<<endl;
+    enter_region(0);
+    cout<<"p seccion critica"<<endl;
+    G=G+1;
+    leave_region(0);
+  }
+}
+
+/* process 1 */
+void q()
+{
+  int i=0;
+  while(i<10){
+    i++;
+    cout<<"q seccion no critica"<<endl;
+    enter_region(1);
+    cout<<"q seccion critica"<<endl;
+    G=G+1;
+    leave_region(1);
+  }
+}
+
+main() {
+  cobegin {
+    p();
+    q();
+  }
+  cout<<"G="<<G<<endl;
+}/* end main() */
+
