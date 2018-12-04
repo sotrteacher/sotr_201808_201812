@@ -1,0 +1,8 @@
+#Autor de este archivo Makefile:LMC
+all:leds_parallel_port
+
+leds_parallel_port:leds_parallel_port.adb
+	mgnatmake leds_parallel_port.adb -I/home/usuario/marte/kernel -I/home/usuario/marte/x86_arch/hwi -I/home/usuario/marte/posix5 -I/home/usuario/marte/sll
+
+clean:
+	rm -vf leds_parallel_port *.o *.ali
