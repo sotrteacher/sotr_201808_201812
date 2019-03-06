@@ -1,0 +1,2 @@
+https://solarianprogrammer.com/2018/05/06/building-gcc-cross-compiler-raspberry-pi/
+
