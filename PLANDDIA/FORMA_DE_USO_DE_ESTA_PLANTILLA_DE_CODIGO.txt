@@ -1,0 +1,26 @@
+#Una vez que se le asigna una funci\'on a un discente, se debe  
+#editar el archivo funcionX.c para que despu\'es de las l\'ineas
+/** $(NumDeBoleta).c
+ * originalmente funcionX.c
+ */
+#include <stdio.h>
+#include "intervalos.h"
+
+incluya la l\'inea 
+#define DISCX	$(NumDeBoleta) 
+
+int X=al n\'umero de funci\'on, por ejemplo 01,
+#NumDBoleta:=N\'umero de boleta del discente al que se le asigna 
+#O bien int NumDBoleta=N\'umero de boleta del discente al que se le asigna
+#trabajar el archivo funcionX.c 
+
+#y tambi\'en se debe 
+#cambiar el nombre del archivo de funcionX.c a $(NumDeBoleta).c 
+
+#Adicionalmente se debe editar el archivo makefile para hacer que la 
+variable FUNCIONX sea igual a $(NumDBoleta), i.e., que se cambie la l\'inea 
+FUNCIONX:=funcionX.c
+por la l\'inea 
+FUNCIONX:=$(NumDBoleta)
+
+
