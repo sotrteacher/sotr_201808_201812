@@ -1,0 +1,22 @@
+In order to merge the 18 files
+Split_GnatGpl2016x86_64_00, Split_GnatGpl2016x86_64_01,...,Split_GnatGpl2016x86_64_17, 
+you could use the following linux command
+
+$ cat Split_GnatGpl2016x86_64_* > gnat-gpl-2016-x86_64-linux-bin.tar.gz
+
+After that, using the command
+
+$ md5sum gnat-gpl-2016-x86_64-linux-bin.tar.gz
+
+you should get:
+
+9741107cca1a6a4ddb0d5e8de824a90c  gnat-gpl-2016-x86_64-linux-bin.tar.gz
+
+To install gnat, untar an execute script doinstall:
+$ tar xvzf gnat-gpl-2016-x86_64-linux-bin.tar.gz
+$ cd gnat-gpl-2016-x86_64-linux-bin
+$ ./doinstall
+
+Read carefully the instructions at the install.txt file in 
+gnat-gpl-2016-x86_64-linux-bin directory.
+
